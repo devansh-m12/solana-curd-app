@@ -1,96 +1,131 @@
-# solana-curd-app
+# Solana Journal App
 
-This project is a preview. Please give feedback to [beeman](https://x.com/beeman_nl) on X.
+## Overview
+
+The Solana Journal App is a decentralized application (dApp) built on the Solana blockchain. It allows users to create, read, update, and delete journal entries using a Solana program. This project demonstrates the integration of a React-based front-end with a Solana smart contract.
+
+## Features
+
+- Create journal entries with a title and message
+- View a list of all journal entries
+- Update existing journal entries
+- Delete journal entries
+- Seamless integration with Solana wallets
 
 ## Getting Started
 
 ### Prerequisites
 
-- Node v18.18.0 or higher
-
+- Node.js v18.18.0 or higher
+- pnpm (for package management)
 - Rust v1.77.2 or higher
 - Anchor CLI 0.30.1 or higher
 - Solana CLI 1.18.17 or higher
 
 ### Installation
 
-#### Clone the repo
+1. Clone the repository:
+   ```
+   git clone https://github.com/devansh-m12/solana-curd-app
+   cd solana-journal-app
+   ```
 
-```shell
-git clone <repo-url>
-cd <repo-name>
-```
+2. Install dependencies:
+   ```
+   pnpm install
+   ```
 
-#### Install Dependencies
+3. Set up the Solana program:
+   ```
+   cd anchor
+   anchor build
+   anchor deploy
+   ```
 
-```shell
-pnpm install
-```
+4. Update the program ID:
+   - Copy the program ID from the deployment output
+   - Update the ID in `anchor/lib/journal_exports.ts`
+   - Update the `declare_id!` macro in `anchor/programs/curd-app/src/lib.rs`
 
-#### Start the web app
+5. Start the development server:
+   ```
+   pnpm dev
+   ```
+
+6. Open your browser and navigate to `http://localhost:3000`
+
+## Project Structure
+
+- `/src/components/journal`: Contains the React components for the journal UI
+- `/anchor`: Contains the Solana program written in Rust using the Anchor framework
+
+## Usage
+
+Refer to the "Components" section in this README for details on how to use the Journal UI components in your React application.
+
+## Development
+
+### Web App
+
+To start the web app in development mode:
 
 ```
 pnpm dev
 ```
 
-## Apps
+To build the web app for production:
 
-### anchor
-
-This is a Solana program written in Rust using the Anchor framework.
-
-#### Commands
-
-You can use any normal anchor commands. Either move to the `anchor` directory and run the `anchor` command or prefix the command with `pnpm`, eg: `pnpm anchor`.
-
-#### Sync the program id:
-
-Running this command will create a new keypair in the `anchor/target/deploy` directory and save the address to the Anchor config file and update the `declare_id!` macro in the `./src/lib.rs` file of the program.
-
-You will manually need to update the constant in `anchor/lib/basic-exports.ts` to match the new program id.
-
-```shell
-pnpm anchor keys sync
+```
+pnpm build
 ```
 
-#### Build the program:
+### Solana Program
 
-```shell
+To build the Solana program:
+
+```
 pnpm anchor-build
 ```
 
-#### Start the test validator with the program deployed:
+To run tests:
 
-```shell
-pnpm anchor-localnet
 ```
-
-#### Run the tests
-
-```shell
 pnpm anchor-test
 ```
 
-#### Deploy to Devnet
+To start a local Solana validator with the program deployed:
 
-```shell
-pnpm anchor deploy --provider.cluster devnet
+```
+pnpm anchor-localnet
 ```
 
-### web
+## Dependencies
 
-This is a React app that uses the Anchor generated client to interact with the Solana program.
+Main dependencies include:
 
-#### Commands
+- React
+- @solana/web3.js
+- @solana/wallet-adapter-react
+- @project-serum/anchor
+- Tailwind CSS
 
-Start the web app
+## Customization
 
-```shell
-pnpm dev
-```
+The UI components use Tailwind CSS for styling. You can customize the appearance by modifying the CSS classes in the component files.
 
-Build the web app
+## Contributing
 
-```shell
-pnpm build
-```
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgements
+
+- Solana Foundation for the blockchain infrastructure
+- Anchor framework for simplifying Solana program development
+
+## Contact
+
+For any queries or feedback, please open an issue in this repository or contact the maintainers directly.
