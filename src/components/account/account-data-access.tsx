@@ -112,7 +112,7 @@ export function useRequestAirdrop({ address }: { address: PublicKey }) {
     mutationKey: ['airdrop', { endpoint: connection.rpcEndpoint, address }],
     mutationFn: async (amount: number = 1) => {
       const [latestBlockhash, signature] = await Promise.all([
-        connection.getLatestBlockhash(),
+        connection.getLatestBlockhash("confirmed"),
         connection.requestAirdrop(address, amount * LAMPORTS_PER_SOL),
       ])
 
@@ -148,7 +148,7 @@ async function createTransaction({
   latestBlockhash: { blockhash: string; lastValidBlockHeight: number }
 }> {
   // Get the latest blockhash to use in our transaction
-  const latestBlockhash = await connection.getLatestBlockhash()
+  const latestBlockhash = await connection.getLatestBlockhash("confirmed")
 
   // Create instructions to send, in this case a simple transfer
   const instructions = [

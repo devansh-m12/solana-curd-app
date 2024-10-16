@@ -1,5 +1,5 @@
-import BasicFeature from '@/components/basic/basic-feature'
+import JournalFeature from '@/components/journal/journal-feature'
 
 export default function Page() {
-  return <BasicFeature />;
+  return <JournalFeature />;
 }
